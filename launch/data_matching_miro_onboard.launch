@@ -1,7 +1,7 @@
 <launch>
 	<!-- Global params -->
-	<rosparam param="data_load_dir">~/teach-repeat-data/office5</rosparam>
-	<rosparam param="data_save_dir">~/teach-repeat-data/office5_tests/1</rosparam>
+	<rosparam param="data_load_dir">/home/ashtenakemoto/TVTR/path_data/path_1/teach</rosparam>
+	<rosparam param="data_save_dir">/home/ashtenakemoto/TVTR/path_data/repeat_1</rosparam>
 	<rosparam param="wait_for_ready">true</rosparam>
 	<rosparam param="image_resize_width">29</rosparam>
 	<rosparam param="image_resize_height">11</rosparam>
@@ -31,7 +31,7 @@
 		<!-- Follow the previous poses using odometry, but use images to correct for odometry drift -->
 		<node pkg="teach_repeat" type="localiser.py" name="localiser" output="screen" >
 			<remap from="odom" to="robot_2/odometry/filtered" />
-			<remap from="image" to="robot_2/front_cam/image_raw" />
+			<remap from="image" to="robot_2/front_cam/image_rect" />
 			<rosparam param="rotation_correction_gain">0.01</rosparam>
 			<rosparam param="path_correction_gain">0.01</rosparam>
 			<rosparam param="stop_at_end">true</rosparam>
@@ -43,7 +43,7 @@
 		<!-- Drive to goal pose -->
 		<node pkg="teach_repeat" type="drive_to_pose_controller.py" name="drive_to_pose" output="screen" >
 			<remap from="cmd_vel" to="robot_2/robot2_velocity_controller/cmd_vel" />
-			<remap from="odom" to="robot_2/front_cam/image_raw" />
+			<remap from="odom" to="robot_2/front_cam/image_rect" />
 			<rosparam param="min_omega">2.6</rosparam>
 			<rosparam param="max_omega">4.8</rosparam>
 			<rosparam param="max_v">0.3</rosparam>

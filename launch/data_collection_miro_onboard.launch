@@ -7,20 +7,17 @@
 
 	<group ns="miro">
 
-		<!-- Stitch image files for matching -->
-		<node pkg="teach_repeat" type="image_stitcher.py" name="image_stitcher" output="screen" />
-
 		<!-- Collect image data -->
 		<node pkg="teach_repeat" type="data_collect.py" name="data_collect" output="screen">
-			<remap from="odom" to="robot_1/odometry/filtered" />
-			<remap from="image" to="robot_1/front_cam/image_raw" />
+			<remap from="odom" to="/robot_1/odometry/filtered" />
+			<remap from="image" to="/robot_1/front_cam/image_rect" />
 			<rosparam param="distance_threshold">0.2</rosparam>
 			<rosparam param="angle_threshold_deg">15.0</rosparam>
 		</node>
 
 		<!-- Save Images and pose in a directory -->
 		<node pkg="teach_repeat" type="data_save.py" name="data_save" output="screen">
-			<rosparam param="save_dir">~/teach-repeat-data</rosparam>
+			<rosparam param="save_dir">/home/ashtenakemoto/TVTR/src/path_data/path_1</rosparam>
 			<rosparam param="timestamp_folder">true</rosparam>
 		</node>
 	</group>

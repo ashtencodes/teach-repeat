@@ -176,7 +176,6 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
-	nodes/camera_calibrator.py
 	nodes/data_collect.py
 	nodes/data_save.py
 	nodes/drive_straight_controller.py
@@ -184,7 +183,6 @@ catkin_install_python(PROGRAMS
 	nodes/image_matcher.py
 	nodes/image_stitcher.py
 	nodes/localiser.py
-	nodes/miro_setup.py
 	nodes/odom_corrupter.py
 	nodes/save_ground_truth.py
 	nodes/teleop_joy.py
