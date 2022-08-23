@@ -1,12 +1,12 @@
 <launch>
 	<!-- Global params -->
-	<rosparam param="data_load_dir">/home/ashtenakemoto/TVTR/src/path_data/path_1/teach</rosparam>
+	<rosparam param="data_load_dir">/home/ashtenakemoto/TVTR/src/path_data/path_2/teach</rosparam>
 	<rosparam param="data_save_dir">/home/ashtenakemoto/TVTR/src/path_data/repeat_1</rosparam>
 	<rosparam param="wait_for_ready">false</rosparam>
 	<rosparam param="image_resize_width">29</rosparam>
 	<rosparam param="image_resize_height">11</rosparam>
 	<rosparam param="image_subsampling">1</rosparam>
-	<rosparam param="image_field_of_view_width_deg">175.2</rosparam>
+	<rosparam param="image_field_of_view_width_deg">79.98</rosparam>
 	<rosparam param="patch_size">(9,9)</rosparam>
 	<rosparam param="image_recognition_threshold">0.1</rosparam>
 	<rosparam param="goal_pose_separation">0.2</rosparam>
@@ -46,12 +46,12 @@
 			<remap from="odom" to="/robot_2/odometry/filtered" />
 			<rosparam param="min_omega">2.6</rosparam>
 			<rosparam param="max_omega">4.8</rosparam>
-			<rosparam param="max_v">0.3</rosparam>
+			<rosparam param="max_v">0.2</rosparam>
 		</node>
 		<!-- Convert Twist commands to TwistStamped -->
 		<node pkg="teach_repeat" type="twist_stamper.py" name="teleop_stamper">
 			<remap from="cmd_vel_unstamped" to="control/cmd_vel_unstamped" />
-			<remap from="cmd_vel" to="control/cmd_vel" />
+			<remap from="cmd_vel" to="/robot_2/robot2_velocity_controller/cmd_vel" />
 		</node>
 	</group>
 </launch>
