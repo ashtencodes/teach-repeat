@@ -5,20 +5,18 @@
 	<rosparam param="patch_size">(9,9)</rosparam>
 	<rosparam param="wait_for_ready">false</rosparam>
 
-	<group ns="miro">
+	<!-- Collect image data -->
+	<node pkg="teach_repeat" type="data_collect.py" name="data_collect" output="screen">
+		<remap from="odom" to="/robot_1/odometry/filtered" />
+		<remap from="image" to="/robot_1/front_cam/image_rect" />
+		<rosparam param="distance_threshold">0.15</rosparam>
+		<rosparam param="angle_threshold_deg">15.0</rosparam>
+	</node>
 
-		<!-- Collect image data -->
-		<node pkg="teach_repeat" type="data_collect.py" name="data_collect" output="screen">
-			<remap from="odom" to="/robot_1/odometry/filtered" />
-			<remap from="image" to="/robot_1/front_cam/image_rect" />
-			<rosparam param="distance_threshold">0.15</rosparam>
-			<rosparam param="angle_threshold_deg">15.0</rosparam>
-		</node>
+	<!-- Save Images and pose in a directory -->
+	<node pkg="teach_repeat" type="data_save.py" name="data_save" output="screen">
+		<rosparam param="save_dir">/home/ashtenakemoto/TVTR/src/path_data/path_2</rosparam>
+		<rosparam param="timestamp_folder">true</rosparam>
+	</node>
 
-		<!-- Save Images and pose in a directory -->
-		<node pkg="teach_repeat" type="data_save.py" name="data_save" output="screen">
-			<rosparam param="save_dir">/home/ashtenakemoto/TVTR/src/path_data/path_2</rosparam>
-			<rosparam param="timestamp_folder">true</rosparam>
-		</node>
-	</group>
 </launch>

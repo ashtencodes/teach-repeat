@@ -449,7 +449,7 @@ class teach_repeat_localiser:
 	def publish_goal(self, pose, lookahead_distance=0.0, stop_at_goal=False):
 		goal = Goal()
 		goal.pose.header.stamp = rospy.Time.now()
-		goal.pose.header.frame_id = "odom"
+		goal.pose.header.frame_id = "map"
 
 		lookahead = tf_conversions.Frame(tf_conversions.Vector(lookahead_distance, 0, 0))
 
@@ -472,7 +472,7 @@ class teach_repeat_localiser:
 
 		if self.publish_gt_goals:
 			try:
-				trans = self.tfBuffer.lookup_transform('map', 'odom', rospy.Time())
+				trans = self.tfBuffer.lookup_transform('map', 'robot_2/odometry/filtered', rospy.Time())
 				trans_frame = tf_conversions.Frame(tf_conversions.Rotation(trans.rotation.x,trans.rotation.y,trans.rotation.z,trans.rotation.w),
 				tf_conversions.Vector(trans.translation.x,trans.translation.y,trans.translation.z))
 
