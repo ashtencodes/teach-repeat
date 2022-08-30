@@ -14,9 +14,8 @@
 	</node>
 
 	<!-- Save Images and pose in a directory -->
-	<node pkg="teach_repeat" type="data_save.py" name="data_save" output="screen">
-		<rosparam param="save_dir">/home/ashtenakemoto/TVTR/src/path_data/path_2</rosparam>
-		<rosparam param="timestamp_folder">true</rosparam>
-	</node>
+	<node pkg="teach_repeat" type="data_save.py" name="data_save" output="screen" />
+
+	<node pkg="tvtr_visualizer" type="teach.py" name="teach_script" output="screen" />
 
 </launch>
