@@ -1,7 +1,5 @@
 <launch>
 	<!-- Global params -->
-	<rosparam param="data_load_dir">/home/ashtenakemoto/TVTR/src/path_data/path_2/teach</rosparam>
-	<rosparam param="data_save_dir">/home/ashtenakemoto/TVTR/src/path_data/path_2/repeat_1</rosparam>
 	<rosparam param="wait_for_ready">false</rosparam>
 	<rosparam param="image_resize_width">29</rosparam>
 	<rosparam param="image_resize_height">11</rosparam>
@@ -35,7 +33,7 @@
 		<rosparam param="stop_at_end">true</rosparam>
 		<rosparam param="discrete-correction">false</rosparam>
 		<rosparam param="search-range">1</rosparam>
-		<rosparam param="global_localisation_init">true</rosparam>
+		<rosparam param="global_localisation_init">false</rosparam>
 	</node>
 
 	<!-- Drive to goal pose -->

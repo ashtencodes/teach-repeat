@@ -45,7 +45,9 @@ class image_matcher:
 			rospy.loginfo('[Image Matcher] no calibration file for right camera specified. Assuming not calibrated')
 			self.cam_right_calibration = CameraInfo()
 
-		self.load_dir = os.path.expanduser(rospy.get_param('/data_load_dir', '~/miro/data'))
+		if rospy.has_param('/path_num'):
+			pathNum = rospy.get_param('/path_num')
+		self.load_dir = '/home/ashtenakemoto/TVTR/src/teach_data/path_' + str(pathNum) + '/teach/'
 		if self.load_dir[-1] != '/':
 			self.load_dir += '/'
 

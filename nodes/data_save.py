@@ -26,8 +26,8 @@ class data_save:
 
 		if rospy.has_param('/path_num'):
 			pathNum = rospy.get_param('/path_num')
-			
-		self.save_dir = '/home/ashtenakemoto/TVTR/src/path_data/path_' + str(pathNum) + '/teach/'
+
+		self.save_dir = '/home/ashtenakemoto/TVTR/src/teach_data/path_' + str(pathNum) + '/teach/'
 		self.save_full_res_images = rospy.get_param('/save_full_res_images', True)
 		self.save_gt_data = rospy.get_param('/save_gt_data', False)
 		self.timestamp_dir = rospy.get_param('~timestamp_folder', False)

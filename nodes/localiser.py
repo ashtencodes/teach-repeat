@@ -123,7 +123,9 @@ class teach_repeat_localiser:
 		self.mutex = threading.Lock()
 
 		# Odom
-		self.load_dir = os.path.expanduser(rospy.get_param('/data_load_dir', '~/miro/data'))
+		if rospy.has_param('/path_num'):
+			pathNum = rospy.get_param('/path_num')
+		self.load_dir = '/home/ashtenakemoto/TVTR/src/teach_data/path_' + str(pathNum) + '/teach/'
 		if self.load_dir[-1] != '/':
 			self.load_dir += '/'
 		self.sum_theta_correction = 0.0
@@ -164,7 +166,9 @@ class teach_repeat_localiser:
 		self.search_range = rospy.get_param('~search-range', 1)
 
 		# data saving
-		self.save_dir = os.path.expanduser(rospy.get_param('/data_save_dir', '~/miro/data/follow-straight_tests/5'))
+		if rospy.has_param('/trial_num'):
+			trialNum = rospy.get_param('/trial_num')
+		self.save_dir = '/home/ashtenakemoto/TVTR/src/repeat_data/path_' + str(pathNum) + '/repeat_' + str(trialNum) +'/'
 		self.save_full_res_images = rospy.get_param('/save_full_res_images', True)
 		self.save_full_res_images_at_goal = rospy.get_param('/save_full_res_images_at_goal', True)
 		self.last_full_res_image = None
