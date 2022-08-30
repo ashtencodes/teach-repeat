@@ -482,7 +482,6 @@ class teach_repeat_localiser:
 				goal_pose.pose = tf_conversions.toMsg(trans_frame * pose_frame_lookahead)
 				self.goal_pose_pub.publish(goal_pose)
 			except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
-				print('Could not lookup transform from /map to /odom')
 				pass
 
 	def do_continuous_correction(self):
