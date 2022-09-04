@@ -50,4 +50,6 @@
 		<remap from="cmd_vel" to="/robot_2/robot2_velocity_controller/cmd_vel" />
 	</node>
 
+	<node pkg="tvtr_visualizer" type="repeat.py" name="repeat_script" output="screen" />
+
 </launch>
