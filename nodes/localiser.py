@@ -34,6 +34,9 @@ TURNING_TARGET_RANGE_DISTANCE_RATIO = 0.5 # x GOAL_DISTANCE_SPACING
 # LOOKAHEAD_DISTANCE_RATIO > TURNING_TARGET_RANGE_DISTANCE_RATIO (otherwise stops and turns on spot when arriving at goal)
 GOAL_THETA_TOLERANCE = 5 #deg
 
+start_time = 0
+end_time = 0
+
 class GOAL_STATE(enum.Enum):
 	normal_goal = 0
 	finished = 1
@@ -343,6 +346,9 @@ class teach_repeat_localiser:
 		# publish offset to tf
 		# self.tf_pub.sendTransform((offset.position.x, offset.position.y, offset.position.z), (offset.orientation.x, offset.orientation.y, offset.orientation.z, offset.orientation.w), rospy.Time.now(), 'map', 'odom')
 		# publish current corrections
+		end_time = time.time()
+		time_diff = end_time - start_time
+		print("TMESTEP:", time_diff)
 		message_as_text = json.dumps({'theta_offset': theta_offset, 'path_offset': path_offset})
 		with open(self.save_dir+('correction/%06d_correction.txt' % self.goal_number), 'w') as correction_file:
 			correction_file.write(message_as_text)
@@ -387,7 +393,8 @@ class teach_repeat_localiser:
 
 			full_image = image_processing.msg_to_image(msg)
 			normalised_image = image_processing.patch_normalise_image(full_image, self.patch_size, resize=self.resize)
-
+			global start_time
+			start_time = time.time()
 			if self.save_full_res_images:
 				cv2.imwrite(self.save_dir+('full/%06d.png' % n), full_image)
 			cv2.imwrite(self.save_dir+('norm/%06d.png' % n), np.uint8(255.0 * (1 + normalised_image) / 2.0))
